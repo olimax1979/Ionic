@@ -27,8 +27,10 @@ export class ProcessHttpmsgProvider {
       const body = error.json() || '';
       const err = body.error || JSON.stringify(body);
       errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+      //errMsg='Hahaha;'
     } else {
       errMsg = error.message ? error.message : error.toString();
+      //errMsg = 'Hahaha'
     }
     console.error(errMsg);
     return Observable.throw(errMsg);
