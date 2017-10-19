@@ -9,6 +9,7 @@ import { ListPage } from '../pages/list/list';
 import { AboutPage } from '../pages/about/about';
 import { MenuPage } from '../pages/menu/menu';
 import { ContactPage } from '../pages/contact/contact';
+import { FavoritesPage } from '../pages/favorites/favorites';
 import { DishdetailPage } from '../pages/dishdetail/dishdetail';
 import { baseURL } from '../shared/baseurl';
 
@@ -28,7 +29,8 @@ import { FavoriteProvider } from '../providers/favorite/favorite';
     AboutPage,
     MenuPage,
     ContactPage,
-    DishdetailPage
+    DishdetailPage,
+    FavoritesPage,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,8 @@ import { FavoriteProvider } from '../providers/favorite/favorite';
     AboutPage,
     MenuPage,
     ContactPage,
-    DishdetailPage
+    DishdetailPage,
+    FavoritesPage,
   ],
   providers: [
     StatusBar,
