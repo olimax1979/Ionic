@@ -12,7 +12,7 @@
     
     <ion-content>
     
-      <div *ngIf="favorites">
+      <div *ngIf="dishes">
         <ion-list>
           <ion-item-sliding *ngFor="let favorite of favorites" #item>
           <ion-item>
@@ -30,7 +30,7 @@
           </ion-item-sliding>
         </ion-list>
       </div>
-      <div [hidden]="favorites || errMess">
+      <div [hidden]="dishes || errMess">
         <ion-spinner></ion-spinner>
         <h4>Loading . . . Please Wait</h4>
       </div>
@@ -38,5 +38,7 @@
         <h2>Error</h2>
         <h4>{{ errMess }}</h4>
       </div>
+
+      
     </ion-content>
     

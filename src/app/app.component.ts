@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, ModalController } from 'ionic-angular';
+import { Nav, Platform, ModalController, ViewController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -52,7 +52,6 @@ export class MyApp {
   }
 
   openReserve() {
-    
         let modal = this.modalCtrl.create(ReservationPage);
         modal.present();
       }

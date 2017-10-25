@@ -7,9 +7,7 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
+    
     <ion-title>Reservation</ion-title>
   </ion-navbar>
 
@@ -25,7 +23,31 @@
         <ion-icon name="md-close" showWhen="android, windows"></ion-icon>
       </button>
     </ion-buttons>
+
     <ion-title>Reserve Table</ion-title>
+    <form [formGroup]="reservation" (ngSubmit)="onSubmit()">
+      <ion-item>
+        <ion-label>No. of Guests</ion-label>
+        <ion-select formControlName="guests">
+          <ion-option value=1>1</ion-option>
+          <ion-option value=2>2</ion-option>
+          <ion-option value=3>3</ion-option>
+          <ion-option value=4>4</ion-option>
+          <ion-option value=5>5</ion-option>
+          <ion-option value=6>6</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Smoking?</ion-label>
+        <ion-toggle formControlName="smoking" checked="true"></ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label>Date and Time</ion-label>
+        <ion-datetime displayFormat="MMM DD, YYYY hh:mm A" pickerFormat="MMM DD, YYYY hh:mm A" formControlName="dateTime"></ion-datetime>
+      </ion-item>
+      <button ion-button type="submit" [disabled]="!reservation.valid">Reserve</button>
+    </form>
+    
   </ion-toolbar>
 
 </ion-content>

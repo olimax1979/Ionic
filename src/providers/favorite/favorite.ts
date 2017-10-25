@@ -36,8 +36,19 @@ export class FavoriteProvider {
     getFavorites(): Observable<Dish[]> {
       return this.dishservice.getDishes()
         .map(dishes => dishes.filter(dish => this.favorites.some(el => el === dish.id)));
+        
     }
+
+    getName(): Observable<Dish[]> {
+      return this.dishservice.getDishes()
+        .map(dishes => dishes.filter(dish => this.favorites.some(eo => eo === dish.name)));
+        
   
+    }
+
+    
+
+
     deleteFavorite(id: number): Observable<Dish[]> {
       let index = this.favorites.indexOf(id);
       if (index >= 0) {
@@ -50,3 +61,5 @@ export class FavoriteProvider {
       }
     }
   }
+
+  
