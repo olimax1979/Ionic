@@ -1,9 +1,11 @@
 import { Component, Inject } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, ActionSheetController, ModalController } from 'ionic-angular';
 import { Dish } from '../../shared/dish';
 import { Comment } from '../../shared/comment';
 import { FavoriteProvider } from '../../providers/favorite/favorite';
 import { DishProvider } from '../../providers/dish/dish';
+import { CommentPage } from '../comment/comment';
+
 
 /**
  * Generated class for the DishdetailPage page.
@@ -28,13 +30,16 @@ export class DishdetailPage {
     @Inject('BaseURL') private BaseURL,
     private favoriteservice: FavoriteProvider,
     private dishservice: DishProvider,
-    private toastCtrl: ToastController) {
+    private toastCtrl: ToastController,
+    public asCtrl: ActionSheetController,
+    public modalCtrl: ModalController) {
     this.dish = navParams.get('dish');
     this.favorite = favoriteservice.isFavorite(this.dish.id);
     this.numcomments = this.dish.comments.length;
     let total = 0;
     this.dish.comments.forEach(comment => total += comment.rating );
     this.avgstars = (total/this.numcomments).toFixed(2);
+    
   }
 
 
@@ -52,6 +57,44 @@ export class DishdetailPage {
       message: this.dishes[this.dish.id].name + ' added as favorite successfully',
       position: 'middle',
       duration: 3000}).present();
+  }
+
+  openAS() {
+
+    this.asCtrl.create({
+      title: 'Select Actions',
+      buttons: [
+        {
+          text: 'Add to Favorites',
+          handler: () => {
+            this.addToFavorites();
+          }
+        },{
+          text: 'Add Comment',
+          handler: () => {
+            this.openComment();
+          }
+        },{
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('cancelled')
+          }
+        }
+      ]
+    })
+    .present();
+    
+  }
+
+  openComment() {
+    let modal = this.modalCtrl.create(CommentPage);
+    modal.onDidDismiss(comment => {
+      if (comment) {
+      this.dish.comments.push(comment);
+      }
+    });
+    modal.present();
   }
 
   ionViewDidLoad() {
