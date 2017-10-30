@@ -30,15 +30,15 @@ export class CommentPage {
       }
 
       dismiss() {
-        let comment=this.commentForm.value;
-        this.viewCtrl.dismiss(comment);
+        this.viewCtrl.dismiss();
   
       }
   
       onSubmit() {
-        console.log(this.commentForm.value);
+        let comment=this.commentForm.value;
+        console.log(comment);
         this.commentForm.value.date=new Date().toISOString();
-        this.dismiss();
+        this.viewCtrl.dismiss(comment);
       }
   
     ionViewDidLoad() {
